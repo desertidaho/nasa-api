@@ -27,14 +27,14 @@ export default class PlanetService {
   }
 
   get ApiPlanet() {
-    return _state.apiPlanet.map(p => new Planet(p))
+    return _state.apiPlanet
   }
 
   //GET DATA
   getPlanetData() {
     _planetAPI.get()
       .then(res => {
-        let data = res.data.results.map(d => new Planet(d)) //change this!!!!!
+        let data = new Planet(res.data)
         setState('apiPlanet', data)
       })
       .catch(err => {
